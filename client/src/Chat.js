@@ -34,7 +34,9 @@ export default function Chat({ socket, username, room }) {
 
   useEffect(() => {
     const fetchMessages = async () => {
-      const response = await fetch(`http://localhost:3001/messages/${room}`);
+      const response = await fetch(
+        `https://still-headland-15979.herokuapp.com/messages/${room}`
+      );
       const result = await response.json();
       setMessageList([...result.messages, ...messageList]);
     };

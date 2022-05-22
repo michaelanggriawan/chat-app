@@ -32,8 +32,8 @@ const User = mongoose.model("User");
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
-    methos: ["GET", "POST"],
+    origin: "*",
+    methods: ["GET", "POST"],
   },
 });
 
@@ -95,6 +95,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/user", require("./routes/user"));
 app.use("/messages", require("./routes/message"));
+app.get("/", (req, res) => {
+  res.status(200).json({ message: "Hello world" });
+});
 
 server.listen(3001, () => {
   console.log("SERVER RUNNING");
